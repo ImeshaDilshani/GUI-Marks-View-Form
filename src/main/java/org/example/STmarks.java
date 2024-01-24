@@ -49,7 +49,7 @@ public class STmarks extends Component {
         try{
             //register the drive class
             //open connection
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
 
             //here student's oop marks is database name, root is username and password
             Connection CONNECTION = DriverManager.getConnection("jdbc:mysql://localhost:3306/oopdb","root","Imesha@99");
