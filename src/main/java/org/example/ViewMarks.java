@@ -1,2 +1,5 @@
-package org.example;public class ViewMarks {
+package org.example;
+
+public class ViewMarks {
+
 }
