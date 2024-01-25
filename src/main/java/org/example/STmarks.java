@@ -35,56 +35,31 @@ public class STmarks extends Component {
         String practical = textPractical.getText();
         String theory = textTheory.getText();
 
-        //convert student id, CA, practical, theory into integer
-        int sid = Integer.parseInt(id);
-        int sname = Integer.parseInt(name);
-        int sca = Integer.parseInt(ca);
-        int spractical = Integer.parseInt(practical);
-        int stheory = Integer.parseInt(theory);
+        String url = "jdbc:mysql://localhost:3306/oopdb";
+        String username = "root";
+        String password = "Imesha@99";
 
-        String url="jdbc:mysql://localhost:3306/oopdb";
-        String username="root";
-        String password="";
-
-        try{
-            //register the drive class
-            //open connection
+        try {
             Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection connection = DriverManager.getConnection(url, username, password);
 
-            //here student's oop marks is database name, root is username and password
-            Connection CONNECTION = DriverManager.getConnection("jdbc:mysql://localhost:3306/oopdb","root","Imesha@99");
+            String SQL = "INSERT INTO CLASS (sid, sname, sca, spractical, stheory) VALUES (?, ?, ?, ?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+            preparedStatement.setString(1, id);
+            preparedStatement.setString(2, name);
+            preparedStatement.setString(3, ca);
+            preparedStatement.setString(4, practical);
+            preparedStatement.setString(5, theory);
 
-            //create statement for insert data into table
-            Statement STATEMENT=CONNECTION.createStatement();
+            preparedStatement.executeUpdate();
 
-            String SQL = "INSERT INTO CLASS VALUES("+id+","+name+","+ca+","+practical+","+theory+")";
-
-            //create resultset
-            ResultSet resultSet=STATEMENT.executeQuery("select * from oop marks");
-
-            //execute query
-            while (resultSet.next()){
-                sid = resultSet.getInt("sid");
-                sname = Integer.parseInt(resultSet.getString("sname").trim());
-                sca = resultSet.getInt("sca");
-                spractical = resultSet.getInt("spractical");
-                stheory = resultSet.getInt("stheory");
-
-                System.out.println("StudentID" + "StudentName" + "CA" + "Practical" + "Theory");
-            }
-
-            resultSet.close();
-            //close the statment
-            STATEMENT.close();
-            //close the connection
-            CONNECTION.close();
-
-
-        }catch(Exception exception){
-
+            preparedStatement.close();
+            connection.close();
+        } catch (Exception exception) {
+            exception.printStackTrace();
         }
-
     }
+
 
 
     public static void main(String[] args) {
