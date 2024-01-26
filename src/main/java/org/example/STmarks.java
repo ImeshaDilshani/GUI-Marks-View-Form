@@ -16,8 +16,8 @@ public class STmarks {
     private JButton viewAllMarksButton;
     private JButton saveButton;
     private JPanel STMarks;
-    private JTable marksTable;
-    private DefaultTableModel tableModel;
+//    private JTable marksTable;
+//    private DefaultTableModel tableModel;
 
     Connection con;
     PreparedStatement pst;
@@ -65,13 +65,15 @@ public class STmarks {
 
             preparedStatement.executeUpdate();
 
-            JOptionPane.showMessageDialog(null, "Marks saved successfully!");
+            JOptionPane.showMessageDialog(null,
+                    "Marks saved successfully!");
 
             preparedStatement.close();
             connection.close();
         } catch (Exception exception) {
             exception.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Failed to save marks!");
+            JOptionPane.showMessageDialog(null,
+                    "Failed to save marks!");
         }
     }
 
