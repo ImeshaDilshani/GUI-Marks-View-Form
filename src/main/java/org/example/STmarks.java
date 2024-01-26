@@ -77,7 +77,8 @@ public class STmarks {
             preparedStatement.executeUpdate();
 
             // Show a success message dialog to the user
-            JOptionPane.showMessageDialog(null, "Marks saved successfully!");
+            JOptionPane.showMessageDialog(null,
+                    "Marks saved successfully!");
 
             // Close the prepared statement and database connection
             preparedStatement.close();
@@ -98,7 +99,6 @@ public class STmarks {
 //        String password = "Imesha@99";
 //
 //        try {
-//            int a;
 //            Class.forName("com.mysql.cj.jdbc.Driver");
 //            Connection connection = DriverManager.getConnection(url, username, password);
 //
